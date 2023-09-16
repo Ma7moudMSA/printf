@@ -9,7 +9,7 @@ void print_char(va_list args, int *count)
 {
 	int c = va_arg(args, int);
 
-	putchar(c);
+	_putchar(c);
 	(*count)++;
 }
 
@@ -24,7 +24,7 @@ void print_string(va_list args, int *count)
 
 	for (; *s; s++)
 	{
-		putchar(*s);
+		_putchar(*s);
 		(*count)++;
 	}
 }
@@ -35,7 +35,7 @@ void print_string(va_list args, int *count)
  */
 void print_percent(int *count)
 {
-	putchar('%');
+	_putchar('%');
 	(*count)++;
 }
 
