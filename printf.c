@@ -1,86 +1,55 @@
 #include "main.h"
 
 /**
- * print_char - Prints a character
- * @args: List of arguments
- * @count: Pointer to the count of characters
- */
-void print_char(va_list args, int *count)
-{
-	int c = va_arg(args, int);
+* _printf - fn name
+* @format: input
+*
+* Return: int value
+*/
 
-	_putchar(c);
-	(*count)++;
-}
-
-/**
- * print_string - Prints a string
- * @args: List of arguments
- * @count: Pointer to the count of characters
- */
-void print_string(va_list args, int *count)
-{
-	char *s = va_arg(args, char *);
-
-	for (; *s; s++)
-	{
-		_putchar(*s);
-		(*count)++;
-	}
-}
-
-/**
- * print_percent - Prints a percent character
- * @count: Pointer to the count of characters
- */
-void print_percent(int *count)
-{
-	_putchar('%');
-	(*count)++;
-}
-
-/**
- * _printf - printf function
- * @format: format.
- *
- * Return: Printed chars.
- */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count = 0;
-	const char *traverse;
+	int i = 0;
 
-	va_start(args, format);
+	char result = '%';
 
-	for (traverse = format; *traverse != '\0'; traverse++)
+	char *str;
+
+	va_list print;
+	va_start(print, format);
+
+	if (format)
 	{
-		while (*traverse != '%' && *traverse != '\0')
+		while (format[i] != '\0')
 		{
-			_putchar(*traverse);
-			traverse++;
-			count++;
-		}
-
-		if (*traverse == '\0')
-			break;
-
-		switch (*++traverse)
-		{
-		case 'c':
-			print_char(args, &count);
-			break;
-		case 's':
-			print_string(args, &count);
-			break;
-		case '%':
-			print_percent(&count);
-			break;
-		default:
-			break;
+			if (format[i] == result)
+			{
+				switch (format[i + 1])
+				{
+					case 'c':
+						putchar(va_arg(print, int));
+						break;
+					case '%':
+						putchar(va_arg(print, int));
+						break;
+					case 's':
+						str = va_arg(print, char *);
+						while (*str)
+						{
+							putchar(*str);
+							str++;
+						}
+						break;
+				}
+			i++;
+			}
+			else
+			{
+				putchar(format[i]);
+				i++;
+			}
 		}
 	}
-
-	va_end(args);
-	return (count);
+	va_end(print);
+	return (i);
 }
