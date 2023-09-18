@@ -82,6 +82,6 @@ int print_adress(va_list print, paramst *p);
 
 int print_rev(va_list print, paramst *p);
 
-void init_params(paramst *pararms, va_list ap);
+void init_par(paramst *par, va_list print);
 
 #endif
