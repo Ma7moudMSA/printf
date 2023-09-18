@@ -52,4 +52,24 @@ int get_print_function(char *s, va_list print, paramst *par)
 	return (0);
 }
 
+/**
+* get_flag - fn name
+* @s: input ptr
+* @par: your paramter
+*
+* Return: valid
+*/
 
+int get_flag(char *s, paramst *par)
+{
+	int i = 0;
+
+	switch (*s)
+	{
+		case '+':
+			i = par->flag = 1;
+			break;
+		case ' ':
+			i = par->space = 1;
+			break;
+		
