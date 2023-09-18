@@ -4,13 +4,12 @@
 * get_spec - finds the format
 * @s: fomar string
 *
-* Return - number of bytes
+* Return: number of bytes
 */
 
-int (*get_spec(char *s))(va_list print, paramst *par)
+int (*get_spec(char *s))(va_list print, paramst * par)
 {
-	sf_t spec[] =
-	{
+	sf_t spec[] = {
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
@@ -40,6 +39,14 @@ int (*get_spec(char *s))(va_list print, paramst *par)
 	return (NULL);
 }
 
+/**
+* get_print_function - fn name
+* @s: input
+* @print: we malo
+* @par: my struct
+*
+* Return: int
+*/
 
 
 int get_print_function(char *s, va_list print, paramst *par)
@@ -72,4 +79,19 @@ int get_flag(char *s, paramst *par)
 		case ' ':
 			i = par->space = 1;
 			break;
-		
+		case '#':
+			i = par->hashtag = 1;
+			break;
+		case '-':
+			i = par->minus = 1;
+			break;
+		case '0':
+			i = par->zero = 1;
+			break;
+	}
+	return (i);
+}
+
+/**
+* get_modifier - find modifer func
+*

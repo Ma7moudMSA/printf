@@ -12,8 +12,10 @@
 
 #define params_init (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-#define convert_lower		1
-#define convert_unsigned	2
+#define NULL_STRING "(null)"
+
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
 
 /**
 * struct parameters - this is a struct of parameters
@@ -56,7 +58,11 @@ typedef struct spec_func
 	int (*function)(va_list, paramst);
 } sf_t
 
+char *get_precision(char *p, paramst *par, va_list print);
 
+char *convert(long int num, int base, int flags, paramst *par);
+int print_unsigned(va_list print, paramst *par);
+int print_address(va_list print, paramst *par);
 
 
 int _printf(const char *format, ...);
@@ -83,5 +89,22 @@ int print_adress(va_list print, paramst *p);
 int print_rev(va_list print, paramst *p);
 
 void init_par(paramst *par, va_list print);
+
+int print_from_to(char *begin, char*stop, char *except);
+int print_rot13(va_list print, paramst *par);
+
+int (*get_specifier(char *s))(va_list print, paramst *par);
+int get_print_func(char *s, va_list print, paramst *par); 
+int get_flag(char *s, paramst *par);
+int get_modifier(char *s, paramst *par);
+int *get_width(char *s, paramst *par, va_list print);
+
+int _isdigit(int c);
+int _strlen(char *s);
+int print_number(char *str, paramst *par);
+int print_number_right_shift(char *str, paramst *par);
+int print_number_left_shift(char *str, paramst *par);
+
+
 
 #endif
