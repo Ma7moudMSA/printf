@@ -8,7 +8,7 @@
 * Return: check length
 */
 
-int print_char(va_list print, paramst *p);
+int print_char(va_list print, paramst *p)
 {
 	char pad_char = ' ';
 	unsigned int pad = 1, sum = 0, ch = va_arg(print, int);
@@ -30,7 +30,7 @@ int print_char(va_list print, paramst *p);
 * Return: check length
 */
 
-int print_string(va_list print, paramst *p);
+int print_string(va_list print, paramst *p)
 {
 	char *str = va_arg(print, char *), pad_char = ' ';
 	unsigned int pad = 0, sum = 0, i = 0, j;
@@ -53,7 +53,7 @@ int print_string(va_list print, paramst *p);
 			sum += _puts(str);
 	}
 	while (j++ < p->width)
-		sum += _putchar(*str++);
+		sum += _putchar(pad_char);
 	if (!p->minus)
 	{
 		if (p->precision != UINT_MAX)
@@ -72,7 +72,7 @@ int print_string(va_list print, paramst *p);
 *
 * Return: check length
 */
-int print_percent(va_list print, paramst *p);
+int print_percent(va_list print, paramst *p)
 {
 	(void)print;
 	(void)p;
@@ -86,7 +86,7 @@ int print_percent(va_list print, paramst *p);
 *
 * Return: check length
 */
-int print_int(va_list print, paramst *p);
+int print_int(va_list print, paramst *p)
 {
 	long l;
 
@@ -95,8 +95,8 @@ int print_int(va_list print, paramst *p);
 	else if (p->h)
 		l = (short int)va_arg(print, int);
 	else
-		l = (int)va_arg(ap, int);
-	return (print_number(convert(1, 10, 0, p), p));
+		l = (int)va_arg(print, int);
+	return (print_number(convert(l, 10, 0, p), p));
 }
 
 /**

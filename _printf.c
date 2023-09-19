@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
 * _printf - fn name
 * @format: the string input
@@ -8,20 +9,17 @@
 int _printf(const char *format, ...)
 {
 	va_list print;
+	int s = 0;
+	char *str, *begin;
+	paramst par = params_init;
 
 	va_start(print, format);
-
-	int s = 0;
-	int check;
-	char *str, begin;
-
-	paramst par = params_init;
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	for (str = format; *str; str++)
+	for (str = (char *)format; *str; str++)
 	{
 		init_par(&par, print);
 		if (*str != '%')
@@ -32,20 +30,19 @@ int _printf(const char *format, ...)
 		begin = str;
 		str++;
 		while (get_flag(str, &par))
-		(
+		{
 			str++;
-		)
+		}
 		str = get_width(str, &par, print);
 		str = get_precision(str, &par, print);
 		if (get_modifier(str, &par))
 			str++;
-		if (!get_specifier(str))
+		if (!get_spec(str))
 		{
-			check = par.l || par.h ? str - 1 : 0;
-			s += print_from_to(begin, str, check);
+			s += print_from_to(begin, str, par.l || par.h ? str - 1 : 0);
 		}
 		else
-			s += get_print_func(str, print, &par);
+			s += get_print_function(str, print, &par);
 	}
 	_putchar(BUF_FLUSH);
 	va_end(print);

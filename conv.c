@@ -72,7 +72,7 @@ int print_HEX(va_list print, paramst *par)
 
 int print_binary(va_list print, paramst *par)
 {
-	unsigned int n = va__arg(print, unsigned int);
+	unsigned int n = va_arg(print, unsigned int);
 	char *str = convert(n, 2, CONVERT_UNSIGNED, par);
 	int c = 0;
 

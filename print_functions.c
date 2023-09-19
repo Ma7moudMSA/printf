@@ -11,7 +11,7 @@
 
 int print_from_to(char *start, char *stop, char *except)
 {
-	int s = 0;
+	int sum = 0;
 
 	while (start <= stop)
 	{
@@ -64,7 +64,7 @@ int print_rot13(va_list print, paramst *par)
 
 	char *a = va_arg(print, char *);
 
-	void(par);
+	(void)par;
 
 	i = 0;
 	check = 0;

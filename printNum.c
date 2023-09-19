@@ -1,4 +1,4 @@
-#include "main.c"
+#include "main.h"
 
 /**
 * _isdigit - fn name
@@ -7,9 +7,10 @@
 * Return: 1 if digit
 */
 
-int _isdigit(int n)
+int _isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+	return (0);
 }
 
 /**
@@ -67,38 +68,38 @@ int print_number(char *str, paramst *par)
 * Return: interger
 */
 
-int print_number_right_shift(char *str, paramst par)
+int print_number_right_shift(char *str, paramst *par)
 {
-	unsigned int n = 0, n, n2, i = _strlen(str);
+	unsigned int n = 0, ne, n2, i = _strlen(str);
 	char pad_char = ' ';
 
 	if (par->zero && !par->minus)
 		pad_char = '0';
-	n = n2 = (!par->unsign && *str == '-');
-	if (n && i < par->width && pad_char == '0' && !par->minus)
+	ne = n2 = (!par->unsign && *str == '-');
+	if (ne && i < par->width && pad_char == '0' && !par->minus)
 		str++;
 	else
-		n = 0;
+		ne = 0;
 	if ((par->plus && !n2) ||
 		(!par->plus && par->space && !n2))
 		i++;
-	if (n && pad_char == '0')
+	if (ne && pad_char == '0')
 		n += _putchar('-');
 	if (par->plus && !n2 && pad_char == '0' && !par->unsign)
 		n += _putchar('+');
 	else if (!par->plus && par->space && !n2 &&
-		!par->unsign && par->zero_flag)
+		!par->unsign && par->zero)
 		n += _putchar (' ');
 	while (i++ < par->width)
 		n += _putchar(pad_char);
-	if (n && pad_char == ' ')
+	if (ne && pad_char == ' ')
 		n += _putchar('-');
 	if (par->plus && !n2 && pad_char == ' ' && !par->unsign)
 		n += _putchar('+');
 	else if (!par->plus && par->space && !n2 &&
 		!par->unsign && !par->zero)
 		n += _putchar(' ');
-	n += _puts(Str);
+	n += _puts(str);
 	return (n);
 }
 
@@ -110,18 +111,18 @@ int print_number_right_shift(char *str, paramst par)
 * Return: interger
 */
 
-int print_number_left_shift(char *str, paramst par)
+int print_number_left_shift(char *str, paramst *par)
 {
-	unsigned int n = 0, n, n2, i = _strlen(str);
+	unsigned int n = 0, ne, n2, i = _strlen(str);
 	char pad_char = ' ';
 
 	if (par->zero && !par->minus)
 		pad_char = '0';
-	n = n2 = (!par->unsign && *str == '-');
-	if (n && i < par->width && pad_char == '0' && !par->minus)
+	ne = n2 = (!par->unsign && *str == '-');
+	if (ne && i < par->width && pad_char == '0' && !par->minus)
 		str++;
 	else
-		n = 0;
+		ne = 0;
 	if (par->plus && !n2 && !par->unsign)
 		n += _putchar('+'), i++;
 	else if (par->space && !n2 && !par->unsign)

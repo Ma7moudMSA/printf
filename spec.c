@@ -74,7 +74,7 @@ int get_flag(char *s, paramst *par)
 	switch (*s)
 	{
 		case '+':
-			i = par->flag = 1;
+			i = par->plus = 1;
 			break;
 		case ' ':
 			i = par->space = 1;
@@ -94,4 +94,51 @@ int get_flag(char *s, paramst *par)
 
 /**
 * get_modifier - find modifer func
+* @s: format
+* @p: struct
 *
+* Return: if valid
+**/
+
+int get_modifier(char *s, paramst *p)
+{
+	int i = 0;
+
+	switch (*s)
+	{
+	case 'h':
+		i = p->h = 1;
+		break;
+	case 'l':
+		i = p->l = 1;
+		break;
+	}
+	return (i);
+}
+
+/**
+* get_width - fn name
+* @s: test
+* @p: if working
+* print: good
+*
+* Return: check
+*/
+
+char *get_width(char *s, paramst *p, va_list print)
+{
+	int d = 0;
+
+	if (*s == '*')
+	{
+		d = va_arg(print, int);
+		s++;
+	}
+	else
+	{
+		while (_isdigit(*s))
+			d = d * 10 + (*s++ - '0');
+	}
+	p->width = d;
+	return (s);
+}

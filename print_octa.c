@@ -6,6 +6,8 @@
  */
 void print_octa(unsigned int number, int *count)
 {
+	int i;
+
 	if (number == 0)
 	{
 		putchar('0');
@@ -22,7 +24,7 @@ void print_octa(unsigned int number, int *count)
 			number /= 8;
 		}
 
-		for (int i = index - 1; i >= 0; i--)
+		for (i = index - 1; i >= 0; i--)
 		{
 			putchar(octalDigits[i]);
 			(*count)++;

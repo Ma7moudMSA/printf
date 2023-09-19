@@ -9,7 +9,8 @@
 * Return: char
 */
 
-char *get_percision(char *str, paramst *par, va_list print)
+char *get_precision(char *str, paramst *par, va_list print)
+
 {
 	int num = 0;
 
@@ -24,8 +25,8 @@ char *get_percision(char *str, paramst *par, va_list print)
 	else
 	{
 		while (_isdigit(*str))
-			sum = (10 * sum) + (*str++ - '0');
+			num = (10 * num) + (*str++ - '0');
 	}
-	par->percision = sum;
+	par->precision = num;
 	return (str);
 }

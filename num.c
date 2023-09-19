@@ -26,11 +26,11 @@ char *convert(long int num, int base, int flags, paramst *par)
 	}
 
 	a = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buffer[49];
+	ptr = &buf[49];
 	*ptr = '\0';
 
 	do {
-		*--ptr = arr[n % base];
+		*--ptr = a[n % base];
 		n /= base;
 	} while (n != 0);
 
@@ -58,7 +58,7 @@ int print_unsigned(va_list print, paramst *par)
 	else
 		l = (unsigned int)va_arg(print, unsigned int);
 	par->unsign = 1;
-	return (print_number(conver(1, 10, CONVERT_UNSIGNED, par), par));
+	return (print_number(convert(l, 10, CONVERT_UNSIGNED, par), par));
 }
 
 /**
@@ -69,7 +69,7 @@ int print_unsigned(va_list print, paramst *par)
 * Return: check for return
 */
 
-int print_address(va_list print, paramst par)
+int print_address(va_list print, paramst *par)
 {
 	unsigned long int n = va_arg(print, unsigned long int);
 	char *str;
