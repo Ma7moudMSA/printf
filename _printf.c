@@ -9,7 +9,7 @@
 int _printf(const char *format, ...)
 {
 	va_list print;
-	int s = 0;
+	int counter = 0;
 	char *str, *begin;
 	paramst par = params_init;
 
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 		init_par(&par, print);
 		if (*str != '%')
 		{
-			s += _putchar(*str);
+			counter += _putchar(*str);
 			continue;
 		}
 		begin = str;
@@ -39,12 +39,12 @@ int _printf(const char *format, ...)
 			str++;
 		if (!get_spec(str))
 		{
-			s += print_from_to(begin, str, par.l || par.h ? str - 1 : 0);
+			counter += print_from_to(begin, str, par.l || par.h ? str - 1 : 0);
 		}
 		else
-			s += get_print_function(str, print, &par);
+			counter += get_print_function(str, print, &par);
 	}
 	_putchar(BUF_FLUSH);
 	va_end(print);
-	return (s);
+	return (counter);
 }
