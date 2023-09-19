@@ -17,24 +17,13 @@ int _puts(char *str)
 }
 
 /**
-* _putchar - fn name
-* @c: input char
-*
-* Return: on succes 1
-* On error -1
+* _putchar - writes the character c to stdout
+* @c: The character to print *
+* Return: On success 1.
+* On error, -1 is returned, and errno is set appropriately.
 */
 
-int _putchar(int c)
+int _putchar(char c)
 {
-	static int p;
-	static char buf[OUTPUT_BUF_SIZE];
-
-	if (c == BUF_FLUSH || p >= OUTPUT_BUF_SIZE)
-	{
-		write(1, buf, p);
-		p = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[p++] = c;
-	return (1);
+	return (write(1, &c, 1));
 }
