@@ -94,7 +94,7 @@ int print_from_to(char *start, char *stop, char *except);
 int print_rot13(va_list print, paramst *par);
 
 int (*get_spec(char *s))(va_list print, paramst *par);
-int get_print_function(char *s, va_list print, paramst *par); 
+int get_print_function(char *s, va_list print, paramst *par);
 int get_flag(char *s, paramst *par);
 int get_modifier(char *s, paramst *par);
 char *get_width(char *s, paramst *p, va_list print);
@@ -105,6 +105,7 @@ int print_number(char *str, paramst *par);
 int print_number_right_shift(char *str, paramst *par);
 int print_number_left_shift(char *str, paramst *par);
 
-
+typedef unsigned long  int       u32;
+typedef   signed long  int       s32;
 
 #endif
