@@ -35,6 +35,5 @@ int _putchar(int c)
 	}
 	if (c != BUF_FLUSH)
 		buf[p++] = c;
-		check++;
 	return (1);
 }
