@@ -53,7 +53,8 @@ int print_string(va_list print, paramst *p)
 				sum += _putchar(*str++);
 		else
 			sum += _puts(str);
-		xx++;
+		if (xx == 0)
+			xx++;
 	}
 	while (j++ < p->width)
 		sum += _putchar(pad_char);
