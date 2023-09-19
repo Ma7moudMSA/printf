@@ -14,7 +14,7 @@ char *convert(long int num, int base, int flags, paramst *par)
 {
 	static char *a;
 	static char buf[50];
-	char s = 0;
+	char s = 0, t = 0;
 	char *ptr;
 	unsigned long n = num;
 	(void) par;
@@ -23,6 +23,7 @@ char *convert(long int num, int base, int flags, paramst *par)
 	{
 		n = -num;
 		s = '-';
+		t++;
 	}
 
 	a = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
@@ -36,6 +37,7 @@ char *convert(long int num, int base, int flags, paramst *par)
 
 	if (s)
 		*--ptr = s;
+		t++;
 	return (ptr);
 }
 
