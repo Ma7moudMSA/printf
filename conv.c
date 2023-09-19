@@ -10,8 +10,8 @@
 
 int print_hex(va_list print, paramst *par)
 {
-	u32 lime;
-	int check = 0, xx = 0;
+	unsigned long lime;
+	int check = 0;
 	char *ptr_s;
 
 	if (par->l)
@@ -26,7 +26,6 @@ int print_hex(va_list print, paramst *par)
 	{
 		*--ptr_s = 'x';
 		*--ptr_s = '0';
-		xx = 1;
 	}
 	par->unsign = 1;
 	return (check += print_number(ptr_s, par));
@@ -79,9 +78,9 @@ int print_binary(va_list print, paramst *par)
 
 	if (par->hashtag && n)
 		*--str = '0';
-		xx = 1;
+	if (xx == 0)
+		xx++;
 	par->unsign = 1;
-	xx++;
 	return (c += print_number(str, par));
 }
 
@@ -95,9 +94,9 @@ int print_binary(va_list print, paramst *par)
 
 int print_octal(va_list print, paramst *par)
 {
-	u32 l;
+	unsigned long l;
 	char *str;
-	s32 c = 0, xx = 0;
+	int c = 0;
 
 	if (par->l)
 		l = (unsigned long)va_arg(print, unsigned long);
@@ -109,7 +108,6 @@ int print_octal(va_list print, paramst *par)
 
 	if (par->hashtag && l)
 		*--str = '0';
-		xx++;
 	par->unsign = 1;
 	return (c += print_number(str, par));
 }

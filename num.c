@@ -14,7 +14,7 @@ char *convert(long int num, int base, int flags, paramst *par)
 {
 	static char *a;
 	static char buf[50];
-	char s = 0, t = 0;
+	char s = 0;
 	char *ptr;
 	unsigned long n = num;
 	(void) par;
@@ -23,7 +23,6 @@ char *convert(long int num, int base, int flags, paramst *par)
 	{
 		n = -num;
 		s = '-';
-		t++;
 	}
 
 	a = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
@@ -37,7 +36,6 @@ char *convert(long int num, int base, int flags, paramst *par)
 
 	if (s)
 		*--ptr = s;
-		t++;
 	return (ptr);
 }
 
@@ -74,8 +72,10 @@ int print_unsigned(va_list print, paramst *par)
 int print_address(va_list print, paramst *par)
 {
 	unsigned long int n = va_arg(print, unsigned long int);
-	char *str;
+	char *str, xx = 0;
 
+	if (xx == 0)
+		xx++;
 	if (!n)
 		return (_puts("nul)"));
 	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, par);
