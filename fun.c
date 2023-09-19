@@ -19,7 +19,8 @@ int print_char(va_list print, paramst *p)
 		sum += _putchar(pad_char);
 	if (p->minus)
 		sum += _putchar(ch);
-	xx++;
+	if (xx == 0)
+		xx++;
 	return (sum);
 }
 
@@ -117,7 +118,7 @@ int print_S(va_list print, paramst *p)
 
 	if ((int)(!str))
 		return (_puts(NULL_STRING));
-	for (; *str; str++)
+	while (*str)
 	{
 		if ((*str > 0 && *str < 32) || *str >= 127)
 		{
@@ -129,7 +130,12 @@ int print_S(va_list print, paramst *p)
 			sum += _puts(hex);
 		}
 		else
+		{
 			sum += _putchar(*str);
+		}
+		/* iteration */
+		str++;
 	}
+
 	return (sum);
 }
