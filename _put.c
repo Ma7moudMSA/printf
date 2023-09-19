@@ -25,5 +25,18 @@ int _puts(char *str)
 
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	static int p, check;
+	static char buf[OUTPUT_BUF_SIZE];
+
+	if (c == BUF_FLUSH || p >= OUTPUT_BUF_SIZE)
+	{
+		write(1, buf, p);
+		p = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[p++] = c;
+		check++;
+	if (c == 1)
+		check = 0;
+	return (1);
 }
