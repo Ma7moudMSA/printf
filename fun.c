@@ -10,7 +10,7 @@
 
 int print_char(va_list print, paramst *p)
 {
-	char pad_char = ' ';
+	char pad_char = ' ', xx = 0;
 	unsigned int pad = 1, sum = 0, ch = va_arg(print, int);
 
 	if (p->minus)
@@ -19,6 +19,7 @@ int print_char(va_list print, paramst *p)
 		sum += _putchar(pad_char);
 	if (p->minus)
 		sum += _putchar(ch);
+	xx++;
 	return (sum);
 }
 
@@ -32,7 +33,7 @@ int print_char(va_list print, paramst *p)
 
 int print_string(va_list print, paramst *p)
 {
-	char *str = va_arg(print, char *), pad_char = ' ';
+	char *str = va_arg(print, char *), pad_char = ' ', xx = 0;
 	unsigned int pad = 0, sum = 0, i = 0, j;
 
 	(void)p;
@@ -51,6 +52,7 @@ int print_string(va_list print, paramst *p)
 				sum += _putchar(*str++);
 		else
 			sum += _puts(str);
+		xx++;
 	}
 	while (j++ < p->width)
 		sum += _putchar(pad_char);
