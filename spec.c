@@ -4,13 +4,12 @@
 * get_spec - finds the format
 * @s: fomar string
 *
-* Return - number of bytes
+* Return: number of bytes
 */
 
-int (*get_spec(char *s))(va_list print, paramst *par)
+int (*get_spec(char *s))(va_list print, paramst * par)
 {
-	sf_t spec[] =
-	{
+	sf_t spec[] = {
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
@@ -40,6 +39,14 @@ int (*get_spec(char *s))(va_list print, paramst *par)
 	return (NULL);
 }
 
+/**
+* get_print_function - fn name
+* @s: input
+* @print: we malo
+* @par: my struct
+*
+* Return: int
+*/
 
 
 int get_print_function(char *s, va_list print, paramst *par)
@@ -67,9 +74,71 @@ int get_flag(char *s, paramst *par)
 	switch (*s)
 	{
 		case '+':
-			i = par->flag = 1;
+			i = par->plus = 1;
 			break;
 		case ' ':
 			i = par->space = 1;
 			break;
-		
+		case '#':
+			i = par->hashtag = 1;
+			break;
+		case '-':
+			i = par->minus = 1;
+			break;
+		case '0':
+			i = par->zero = 1;
+			break;
+	}
+	return (i);
+}
+
+/**
+* get_modifier - find modifer func
+* @s: format
+* @p: struct
+*
+* Return: if valid
+**/
+
+int get_modifier(char *s, paramst *p)
+{
+	int i = 0;
+
+	switch (*s)
+	{
+	case 'h':
+		i = p->h = 1;
+		break;
+	case 'l':
+		i = p->l = 1;
+		break;
+	}
+	return (i);
+}
+
+/**
+* get_width - fn name
+* @s: test
+* @p: if working
+* @print: good
+*
+* Return: check
+*/
+
+char *get_width(char *s, paramst *p, va_list print)
+{
+	int d = 0;
+
+	if (*s == '*')
+	{
+		d = va_arg(print, int);
+		s++;
+	}
+	else
+	{
+		while (_isdigit(*s))
+			d = d * 10 + (*s++ - '0');
+	}
+	p->width = d;
+	return (s);
+}
