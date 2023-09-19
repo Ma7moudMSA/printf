@@ -23,7 +23,7 @@ int _puts(char *str)
 * On error, -1 is returned, and errno is set appropriately.
 */
 
-int _putchar(char c)
+int _putchar(int c)
 {
 	static int p, check;
 	static char buf[OUTPUT_BUF_SIZE];
