@@ -4,6 +4,8 @@
  * print_Hex - prints the Hexa representation of a number
  * @number: the number to be printed
  * @count: a pointer to the count of characters printed
+ *
+ * Returns: void
  */
 void print_Hex(unsigned int number, int *count)
 {
