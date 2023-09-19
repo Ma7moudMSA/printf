@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 
 	va_start(print, format);
 
-	int s = 0;
+	int s = 0,x;
 	int check;
 	char *str, begin;
 
@@ -27,14 +27,16 @@ int _printf(const char *format, ...)
 		if (*str != '%')
 		{
 			s += _putchar(*str);
+			x=0;
 			continue;
 		}
 		begin = str;
 		str++;
 		while (get_flag(str, &par))
-		(
+		{
 			str++;
-		)
+			x=0;
+		}
 		str = get_width(str, &par, print);
 		str = get_precision(str, &par, print);
 		if (get_modifier(str, &par))
