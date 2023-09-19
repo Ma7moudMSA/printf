@@ -2,7 +2,7 @@
 
 /**
 * _isdigit - fn name
-* @n: input number
+* @c: input number
 *
 * Return: 1 if digit
 */

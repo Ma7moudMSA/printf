@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-* get_percision - fn name
+* get_precision - fn name
 * @str: input str
 * @par: typedef
 * @print: variadic fn

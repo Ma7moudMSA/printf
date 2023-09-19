@@ -120,7 +120,7 @@ int get_modifier(char *s, paramst *p)
 * get_width - fn name
 * @s: test
 * @p: if working
-* print: good
+* @print: good
 *
 * Return: check
 */
