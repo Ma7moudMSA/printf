@@ -1,34 +1,34 @@
 	#include "main.h"
 
-	/**
-	 * print_from_to - fn name
-	 * @start: where ptr starts
-	 * @stop: where it should end
-	 * @except: the except address
-	 *
-	 * Return: number of bytes printed
-	 */
+/**
+* print_from_to - fn name
+* @start: where ptr starts
+* @stop: where it should end
+* @except: the except address
+*
+* Return: number of bytes printed
+*/
 
-	int print_from_to(char *start, char *stop, char *except)
+int print_from_to(char *start, char *stop, char *except)
+{
+	int sum = 0;
+
+	while (start <= stop)
 	{
-		int sum = 0;
-
-		while (start <= stop)
-		{
-			if (start != except)
-				sum += _putchar(*start);
-			start++;
-		}
-		return (sum);
+		if (start != except)
+			sum += _putchar(*start);
+		start++;
 	}
+	return (sum);
+}
 
-	/**
-	 * print_rev - fn name
-	 * @print: my list
-	 * @par: struct
-	 *
-	 * Return: number of bytes
-	 */
+/**
+* print_rev - fn name
+* @print: my list
+* @par: struct
+*
+* Return: number of bytes
+*/
 
 	int print_rev(va_list print, paramst *par)
 	{
@@ -54,13 +54,13 @@
 		return (s);
 	}
 
-	/**
-	 * print_rot13 - fnn name
-	 * @print: struct
-	 * @par: check it out
-	 *
-	 * Return: number of bytes
-	 */
+/**
+* print_rot13 - fnn name
+* @print: struct
+* @par: check it out
+*
+* Return: number of bytes
+*/
 
 	int print_rot13(va_list print, paramst *par)
 	{

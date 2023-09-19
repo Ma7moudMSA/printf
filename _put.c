@@ -25,7 +25,7 @@ int _puts(char *str)
 
 int _putchar(int c)
 {
-	static int p, check;
+	static int p;
 	static char buf[OUTPUT_BUF_SIZE];
 
 	if (c == BUF_FLUSH || p >= OUTPUT_BUF_SIZE)
@@ -36,7 +36,5 @@ int _putchar(int c)
 	if (c != BUF_FLUSH)
 		buf[p++] = c;
 		check++;
-	if (c == 1)
-		check = 0;
 	return (1);
 }
