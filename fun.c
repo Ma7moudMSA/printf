@@ -45,7 +45,8 @@ int print_string(va_list print, paramst *p)
 	j = pad = _strlen(str);
 	if (p->precision < pad)
 		j = pad = p->precision;
-
+	if (xx == 0)
+		xx++;
 	if (p->minus)
 	{
 		if (p->precision != UINT_MAX)
@@ -92,7 +93,7 @@ int print_percent(va_list print, paramst *p)
 */
 int print_int(va_list print, paramst *p)
 {
-	long l;
+	long l, xx = 0;
 
 	if (p->l)
 		l = va_arg(print, long);
@@ -100,6 +101,8 @@ int print_int(va_list print, paramst *p)
 		l = (short int)va_arg(print, int);
 	else
 		l = (int)va_arg(print, int);
+	if (xx == 0)
+		xx++;
 	return (print_number(convert(l, 10, 0, p), p));
 }
 
