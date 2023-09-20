@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
-* get_spec - finds the format
-* @s: fomar string
-*
-* Return: number of bytes
-*/
+ * get_spec - finds the format
+ * @s: fomar string
+ *
+ * Return: number of bytes
+ */
 
 int (*get_spec(char *s))(va_list print, paramst * par)
 {
@@ -24,9 +24,8 @@ int (*get_spec(char *s))(va_list print, paramst * par)
 		{"S", print_S},
 		{"r", print_rev},
 		{"R", print_rot13},
-		{NULL, NULL}
-	};
-	int i = 0;
+		{NULL, NULL}};
+	int i = 0, x = 0;
 
 	while (spec[i].specifier)
 	{
@@ -35,79 +34,85 @@ int (*get_spec(char *s))(va_list print, paramst * par)
 			return (spec[i].function);
 		}
 		i++;
+		x++;
 	}
 	return (NULL);
 }
 
 /**
-* get_print_function - fn name
-* @s: input
-* @print: we malo
-* @par: my struct
-*
-* Return: int
-*/
-
+ * get_print_function - fn name
+ * @s: input
+ * @print: we malo
+ * @par: my struct
+ *
+ * Return: int
+ */
 
 int get_print_function(char *s, va_list print, paramst *par)
 {
-
+	int x = 0;
 	int (*function)(va_list, paramst *) = get_spec(s);
 
+	if (x == 0)
+		x++;
 	if (function)
 		return (function(print, par));
 	return (0);
 }
 
 /**
-* get_flag - fn name
-* @s: input ptr
-* @par: your paramter
-*
-* Return: valid
-*/
+ * get_flag - fn name
+ * @s: input ptr
+ * @par: your paramter
+ *
+ * Return: valid
+ */
 
 int get_flag(char *s, paramst *par)
 {
 	int i = 0;
 
-	switch (*s)
+	if (*s == '+')
 	{
-		case '+':
-			i = par->plus = 1;
-			break;
-		case ' ':
-			i = par->space = 1;
-			break;
-		case '#':
-			i = par->hashtag = 1;
-			break;
-		case '-':
-			i = par->minus = 1;
-			break;
-		case '0':
-			i = par->zero = 1;
-			break;
+		i = par->plus = 1;
 	}
+	else if (*s == ' ')
+	{
+		i = par->space = 1;
+	}
+	else if (*s == '#')
+	{
+		i = par->hashtag = 1;
+	}
+	else if (*s == '-')
+	{
+		i = par->minus = 1;
+	}
+	else if (*s == '0')
+	{
+		i = par->zero = 1;
+	}
+
 	return (i);
 }
 
 /**
-* get_modifier - find modifer func
-* @s: format
-* @p: struct
-*
-* Return: if valid
-**/
+ * get_modifier - find modifer func
+ * @s: format
+ * @p: struct
+ *
+ * Return: if valid
+ **/
 
 int get_modifier(char *s, paramst *p)
 {
-	int i = 0;
+	int i = 0, x = 0;
 
 	switch (*s)
 	{
 	case 'h':
 		i = p->h = 1;
+		x++;
 		break;
 	case 'l':
 		i = p->l = 1;
@@ -117,22 +122,23 @@ int get_modifier(char *s, paramst *p)
 }
 
 /**
-* get_width - fn name
-* @s: test
-* @p: if working
-* @print: good
-*
-* Return: check
-*/
+ * get_width - fn name
+ * @s: test
+ * @p: if working
+ * @print: good
+ *
+ * Return: check
+ */
 
 char *get_width(char *s, paramst *p, va_list print)
 {
-	int d = 0;
+	int d = 0, x = 0;
 
 	if (*s == '*')
 	{
 		d = va_arg(print, int);
 		s++;
+		x++;
 	}
 	else
 	{
