@@ -1,13 +1,13 @@
-	#include "main.h"
+#include "main.h"
 
 /**
-* print_from_to - fn name
-* @start: where ptr starts
-* @stop: where it should end
-* @except: the except address
-*
-* Return: number of bytes printed
-*/
+ * print_from_to - fn name
+ * @start: where ptr starts
+ * @stop: where it should end
+ * @except: the except address
+ *
+ * Return: number of bytes printed
+ */
 
 int print_from_to(char *start, char *stop, char *except)
 {
@@ -23,69 +23,73 @@ int print_from_to(char *start, char *stop, char *except)
 }
 
 /**
-* print_rev - fn name
-* @print: my list
-* @par: struct
-*
-* Return: number of bytes
-*/
+ * print_rev - fn name
+ * @print: my list
+ * @par: struct
+ *
+ * Return: number of bytes
+ */
 
-	int print_rev(va_list print, paramst *par)
+int print_rev(va_list print, paramst *par)
+{
+	int l, s = 0, i = 0;
+	char *ptr = va_arg(print, char *);
+	(void)par;
+
+	if (ptr)
 	{
-		int l, s = 0;
-		char *ptr = va_arg(print, char *);
-		(void)par;
-
-		if (ptr)
+		l = 0;
+		while (*ptr)
 		{
-			l = 0;
-			while (*ptr)
-			{
-				l++;
-				ptr++;
-			}
-			while (l > 0)
-			{
-				l--;
-				ptr--;
-				s += _putchar(*ptr);
-			}
-		}
-		return (s);
-	}
-
-/**
-* print_rot13 - fnn name
-* @print: struct
-* @par: check it out
-*
-* Return: number of bytes
-*/
-
-	int print_rot13(va_list print, paramst *par)
-	{
-		int i, check;
-		int c = 0;
-
-		char arr[] =
-			"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
-
-		char *a = va_arg(print, char *);
-
-		(void)par;
-
-		i = 0;
-		check = 0;
-		while (a[i])
-		{
-			if ((a[i] >= 'A' && a[i] <= 'Z') || (a[i] >= 'a' && a[i] <= 'z'))
-			{
-				check = a[i] - 65;
-				c += _putchar(arr[check]);
-			}
-			else
-				c += _putchar(a[i]);
+			l++;
+			ptr++;
 			i++;
 		}
-		return (c);
+		while (l > 0)
+		{
+			i++;
+			l--;
+			ptr--;
+			s += _putchar(*ptr);
+		}
 	}
+	return (s);
+}
+
+/**
+ * print_rot13 - fnn name
+ * @print: struct
+ * @par: check it out
+ *
+ * Return: number of bytes
+ */
+
+int print_rot13(va_list print, paramst *par)
+{
+	int i, check;
+	int c = 0;
+
+	char arr[] =
+		"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
+
+	char *a = va_arg(print, char *);
+
+	(void)par;
+
+	i = 0;
+	check = 0;
+	for (i = 0; a[i]; i++)
+	{
+		if ((a[i] >= 'A' && a[i] <= 'Z') || (a[i] >= 'a' && a[i] <= 'z'))
+		{
+			check = a[i] - 65;
+			c += _putchar(arr[check]);
+		}
+		else
+		{
+			c += _putchar(a[i]);
+		}
+	}
+
+	return (c);
+}
