@@ -49,8 +49,10 @@ char *convert(long int num, int base, int flags, paramst *par)
 
 int print_unsigned(va_list print, paramst *par)
 {
-	unsigned long l;
+	unsigned long l, x = 0;
 
+	if (x == 0)
+		x = 1;
 	if (par->l)
 		l = (unsigned long)va_arg(print, long);
 	else if (par->h)
