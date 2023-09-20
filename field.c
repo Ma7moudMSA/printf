@@ -12,8 +12,10 @@
 char *get_precision(char *str, paramst *par, va_list print)
 
 {
-	int num = 0;
+	int num = 0, x = 0;
 
+	if (x == 0)
+		x = 1;
 	if (*str != '.')
 		return (str);
 	str++;
@@ -21,6 +23,7 @@ char *get_precision(char *str, paramst *par, va_list print)
 	{
 		num = va_arg(print, int);
 		str++;
+		x++;
 	}
 	else
 	{
