@@ -9,7 +9,7 @@
 int _printf(const char *format, ...)
 {
 	va_list print;
-	int counter = 0;
+	int counter = 0, x = 0;
 	char *str, *begin;
 	paramst par = params_init;
 
@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 		init_par(&par, print);
 		if (*str != '%')
 		{
+			x++;
 			counter += _putchar(*str);
 			continue;
 		}
